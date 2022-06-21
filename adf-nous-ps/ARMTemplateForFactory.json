@@ -834,7 +834,12 @@
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
 						"     saveOrder: 1,",
-						"     errorHandlingOption: 'stopOnFirstError') ~> sinkCurrent",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          ISBN = BookID,",
+						"          SoldDate,",
+						"          SoldPrice",
+						"     )) ~> sinkCurrent",
 						"split1@ArchiveData sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
@@ -850,7 +855,12 @@
 						"     format: 'table',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
-						"     errorHandlingOption: 'stopOnFirstError') ~> sinkArchive"
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          ISBN = BookID,",
+						"          SoldDate,",
+						"          SoldPrice",
+						"     )) ~> sinkArchive"
 					]
 				}
 			},
@@ -880,7 +890,7 @@
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
 					"firstRowAsHeader": false,
-					"quoteChar": "\""
+					"quoteChar": ""
 				},
 				"schema": [
 					{
