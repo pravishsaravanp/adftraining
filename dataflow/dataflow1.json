@@ -9,40 +9,33 @@
 						"referenceName": "BookSalesOurce",
 						"type": "DatasetReference"
 					},
-					"name": "csvSourceFile"
+					"name": "BookSalesSource"
 				}
 			],
-			"sinks": [
-				{
-					"name": "sink1"
-				},
-				{
-					"name": "sink2"
-				}
-			],
+			"sinks": [],
 			"transformations": [
 				{
 					"name": "filter1"
+				},
+				{
+					"name": "filter2"
+				},
+				{
+					"name": "filter3"
 				}
 			],
 			"scriptLines": [
 				"source(output(",
-				"          {1700670127} as string,",
-				"          {2004-10-13 12:23:54.890000000} as string,",
-				"          {31.434} as string",
+				"          BookID as string,",
+				"          SoldDate as timestamp,",
+				"          SoldPrice as long",
 				"     ),",
 				"     allowSchemaDrift: false,",
 				"     validateSchema: true,",
-				"     ignoreNoFilesFound: false) ~> csvSourceFile",
-				"csvSourceFile filter(ERROR_FUNCTION('')) ~> filter1",
-				"filter1 sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1",
-				"filter1 sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink2"
+				"     ignoreNoFilesFound: false) ~> BookSalesSource",
+				"filter2 filter(ERROR_FUNCTION('')) ~> filter1",
+				"filter3 filter(ERROR_FUNCTION('')) ~> filter2",
+				"BookSalesSource filter(ERROR_FUNCTION('')) ~> filter3"
 			]
 		}
 	}
