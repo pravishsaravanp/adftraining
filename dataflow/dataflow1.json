@@ -12,30 +12,47 @@
 					"name": "BookSalesSource"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "BookSalesDB",
+						"type": "DatasetReference"
+					},
+					"name": "sink2004"
+				}
+			],
 			"transformations": [
 				{
 					"name": "filter1"
-				},
-				{
-					"name": "filter2"
-				},
-				{
-					"name": "filter3"
 				}
 			],
 			"scriptLines": [
 				"source(output(",
 				"          BookID as string,",
-				"          SoldDate as timestamp,",
-				"          SoldPrice as long",
+				"          SoldDate as date,",
+				"          SoldPrice as decimal(10,0)",
 				"     ),",
 				"     allowSchemaDrift: false,",
 				"     validateSchema: true,",
 				"     ignoreNoFilesFound: false) ~> BookSalesSource",
-				"filter2 filter(ERROR_FUNCTION('')) ~> filter1",
-				"filter3 filter(ERROR_FUNCTION('')) ~> filter2",
-				"BookSalesSource filter(ERROR_FUNCTION('')) ~> filter3"
+				"BookSalesSource filter(year(SoldDate) == year(toDate('2004-1-1'))) ~> filter1",
+				"filter1 sink(allowSchemaDrift: false,",
+				"     validateSchema: true,",
+				"     input(",
+				"          BookSaleID as integer,",
+				"          ISBN as string,",
+				"          SoldDate as timestamp,",
+				"          SoldPrice as decimal(19,4)",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink2004"
 			]
 		}
 	}

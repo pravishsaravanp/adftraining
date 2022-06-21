@@ -1,0 +1,38 @@
+{
+	"name": "BookSalesDB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "BookSaleID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ISBN",
+				"type": "char"
+			},
+			{
+				"name": "SoldDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "SoldPrice",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BookSale"
+		}
+	}
+}
