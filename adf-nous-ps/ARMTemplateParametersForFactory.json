@@ -10,6 +10,9 @@
 		},
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
+		},
+		"AzureSqlDatabase2_connectionString": {
+			"value": ""
 		}
 	}
 }
