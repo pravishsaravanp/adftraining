@@ -1,0 +1,9 @@
+{
+	"name": "adf-nous-ps",
+	"location": "centralus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "8cd1acba-1945-4e5c-8e6b-01707f5346b9",
+		"tenantId": "00073b17-7209-4a95-a5c2-6309c60c8bd6"
+	}
+}
