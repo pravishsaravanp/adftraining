@@ -18,12 +18,19 @@
 						"referenceName": "BookSalesDB",
 						"type": "DatasetReference"
 					},
-					"name": "sink2004"
+					"name": "sinkCurrent"
+				},
+				{
+					"dataset": {
+						"referenceName": "BookSaleArchive",
+						"type": "DatasetReference"
+					},
+					"name": "sinkArchive"
 				}
 			],
 			"transformations": [
 				{
-					"name": "filter1"
+					"name": "split1"
 				}
 			],
 			"scriptLines": [
@@ -35,8 +42,9 @@
 				"     allowSchemaDrift: false,",
 				"     validateSchema: true,",
 				"     ignoreNoFilesFound: false) ~> BookSalesSource",
-				"BookSalesSource filter(year(SoldDate) == year(toDate('2004-1-1'))) ~> filter1",
-				"filter1 sink(allowSchemaDrift: false,",
+				"BookSalesSource split(year(SoldDate) == 2005,",
+				"     disjoint: false) ~> split1@(CurrentData, ArchiveData)",
+				"split1@CurrentData sink(allowSchemaDrift: false,",
 				"     validateSchema: true,",
 				"     input(",
 				"          BookSaleID as integer,",
@@ -52,7 +60,23 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     saveOrder: 1,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink2004"
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkCurrent",
+				"split1@ArchiveData sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          BookSaleArchiveID as integer,",
+				"          ISBN as string,",
+				"          SoldDate as timestamp,",
+				"          SoldPrice as decimal(19,4)",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkArchive"
 			]
 		}
 	}
