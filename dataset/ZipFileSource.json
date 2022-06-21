@@ -1,0 +1,38 @@
+{
+	"name": "ZipFileSource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "EmployeeData.zip",
+				"container": "adfcompressedfile"
+			},
+			"columnDelimiter": ",",
+			"compressionCodec": "ZipDeflate",
+			"compressionLevel": "Fastest",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "PK\u0003\u0004\u0014\u0000\u0000\u0000\b\u0000�^VT}\u0006�$�\u0000\u0000\u0000j\u0001\u0000\u0000\u0011\u0000\u0000\u0000EmployeeData1.csv=�In�0\fE�\u0002|\u0013.:\u000f�&h��\u0003�\u0004-�MAI�",
+				"type": "String"
+			},
+			{
+				"name": "X\u0016\u000bZj��r\u0002gEq���\u0016j/}���\u0011\u0004�^��%\u0001��\u000f��P��9�0��H�J�0Dx�\u000e\u0003�\u0007s�X�\u000bxb��Vr(��el�\u0005�J]�w\u0004\u000b�\u0016'�\u000e-�J]�����gJ��2\u001c�[t��T�뒋�0gi��vӢ\u001e�7�I\u0018\u0003y��\u0012M�gḮ�lǙ[�{���U־�\b_��\u001f�r�\u001d",
+				"type": "String"
+			},
+			{
+				"name": "��\u001af��t���A",
+				"type": "String"
+			}
+		]
+	}
+}
