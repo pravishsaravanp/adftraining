@@ -1,0 +1,36 @@
+{
+	"name": "BookSalesOurce",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "BookSales.txt.txt",
+				"container": "adfbookscontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "1700670127",
+				"type": "String"
+			},
+			{
+				"name": "2004-10-13 12:23:54.890000000",
+				"type": "String"
+			},
+			{
+				"name": "31.434",
+				"type": "String"
+			}
+		]
+	}
+}
