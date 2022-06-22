@@ -42,7 +42,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectedData",
-				"SelectedData filter(year > '1950') ~> FilterMovieDataAfter1950"
+				"SelectedData filter(toInteger(year) > 1950) ~> FilterMovieDataAfter1950"
 			]
 		}
 	}
