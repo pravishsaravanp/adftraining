@@ -12,7 +12,15 @@
 					"name": "MoviesDataADLSg2"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTableMoviesDB",
+						"type": "DatasetReference"
+					},
+					"name": "Transformeddata"
+				}
+			],
 			"transformations": [
 				{
 					"name": "SelectedData"
@@ -71,7 +79,27 @@
 				"          NoOfMovies = count(movie),",
 				"          HighestRatedMovie = first(title),",
 				"          LowestRatedMovie = last(title)) ~> AggregateMovieData",
-				"AggregateMovieData alterRow(upsertIf(true())) ~> AlterRowData"
+				"AggregateMovieData alterRow(upsertIf(true())) ~> AlterRowData",
+				"AlterRowData sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          PrimaryGenre,",
+				"          year,",
+				"          AverageRating,",
+				"          HighestRating,",
+				"          LowestRating,",
+				"          NoOfMovies,",
+				"          HighestRatedMovie,",
+				"          LowestRatedMovie",
+				"     )) ~> Transformeddata"
 			]
 		}
 	}
