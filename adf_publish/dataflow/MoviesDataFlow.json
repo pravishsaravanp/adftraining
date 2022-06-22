@@ -80,7 +80,7 @@
 				"          HighestRatedMovie = first(title),",
 				"          LowestRatedMovie = last(title)) ~> AggregateMovieData",
 				"AggregateMovieData alterRow(upsertIf(true())) ~> AlterRowData",
-				"AlterRowData sink(allowSchemaDrift: true,",
+				"AlterRowData sink(allowSchemaDrift: false,",
 				"     validateSchema: false,",
 				"     input(",
 				"          PrimaryGenre as string,",
@@ -93,21 +93,13 @@
 				"          LowestRatedMovie as string",
 				"     ),",
 				"     deletable:false,",
-				"     insertable:false,",
+				"     insertable:true,",
 				"     updateable:false,",
-				"     upsertable:true,",
+				"     upsertable:false,",
 				"     format: 'table',",
-				"     errorHandlingOption: 'stopOnFirstError',",
-				"     mapColumn(",
-				"          PrimaryGenre,",
-				"          year,",
-				"          AverageRating,",
-				"          HighestRating,",
-				"          LowestRating,",
-				"          NoOfMovies,",
-				"          HighestRatedMovie,",
-				"          LowestRatedMovie",
-				"     )) ~> Transformeddata"
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> Transformeddata"
 			]
 		}
 	}
