@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DelimitedText1",
+						"referenceName": "MoviesDataADLSg2",
 						"type": "DatasetReference"
 					},
 					"name": "MoviesDataADLSg2"
@@ -16,6 +16,9 @@
 			"transformations": [
 				{
 					"name": "SelectedData"
+				},
+				{
+					"name": "FilterMovieDataAfter1950"
 				}
 			],
 			"scriptLines": [
@@ -35,11 +38,11 @@
 				"          title,",
 				"          genres,",
 				"          year,",
-				"          Rating,",
-				"          {Rotton Tomato}",
+				"          {Rotten Tomato} = {Rotton Tomato}",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> SelectedData"
+				"     skipDuplicateMapOutputs: true) ~> SelectedData",
+				"SelectedData filter(year > '1950') ~> FilterMovieDataAfter1950"
 			]
 		}
 	}
