@@ -28,6 +28,9 @@
 				},
 				{
 					"name": "AggregateMovieData"
+				},
+				{
+					"name": "AlterRowData"
 				}
 			],
 			"scriptLines": [
@@ -62,10 +65,13 @@
 				"     RatingsRank = rank()) ~> RankBasedOnRating",
 				"RankBasedOnRating aggregate(groupBy(PrimaryGenre,",
 				"          year),",
-				"     AverageRating = ERROR_FUNCTION(''),",
-				"          HighestRating = ERROR_FUNCTION(''),",
-				"          LowestRating = ERROR_FUNCTION(''),",
-				"          NoOfMovies = ERROR_FUNCTION('')) ~> AggregateMovieData"
+				"     AverageRating = avg(toInteger({Rotten Tomato})),",
+				"          HighestRating = max(toInteger({Rotten Tomato})),",
+				"          LowestRating = min(toInteger({Rotten Tomato})),",
+				"          NoOfMovies = count(movie),",
+				"          HighestRatedMovie = first(title),",
+				"          LowestRatedMovie = last(title)) ~> AggregateMovieData",
+				"AggregateMovieData alterRow(upsertIf(true())) ~> AlterRowData"
 			]
 		}
 	}
