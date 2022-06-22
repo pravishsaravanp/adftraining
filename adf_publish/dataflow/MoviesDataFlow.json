@@ -22,6 +22,12 @@
 				},
 				{
 					"name": "DerivePrimaryGenre"
+				},
+				{
+					"name": "RankBasedOnRating"
+				},
+				{
+					"name": "AggregateMovieData"
 				}
 			],
 			"scriptLines": [
@@ -49,7 +55,17 @@
 				"FilterMovieDataAfter1950 derive(PrimaryGenre = case(",
 				"    locate('|',genres,1) > 0,",
 				"    left(genres,locate('|',genres,1)-1),",
-				"    genres)) ~> DerivePrimaryGenre"
+				"    genres)) ~> DerivePrimaryGenre",
+				"DerivePrimaryGenre window(over(PrimaryGenre,",
+				"          year),",
+				"     desc({Rotten Tomato}, true),",
+				"     RatingsRank = rank()) ~> RankBasedOnRating",
+				"RankBasedOnRating aggregate(groupBy(PrimaryGenre,",
+				"          year),",
+				"     AverageRating = ERROR_FUNCTION(''),",
+				"          HighestRating = ERROR_FUNCTION(''),",
+				"          LowestRating = ERROR_FUNCTION(''),",
+				"          NoOfMovies = ERROR_FUNCTION('')) ~> AggregateMovieData"
 			]
 		}
 	}
