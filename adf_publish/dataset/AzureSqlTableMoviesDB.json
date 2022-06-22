@@ -7,7 +7,44 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [],
+		"schema": [
+			{
+				"name": "PrimaryGenre",
+				"type": "nvarchar"
+			},
+			{
+				"name": "year",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AverageRating",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "HighestRating",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LowestRating",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NoOfMovies",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "HighestRatedMovie",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LowestRatedMovie",
+				"type": "nvarchar"
+			}
+		],
 		"typeProperties": {
 			"schema": "dbo",
 			"table": "TransformedMoviesData"
