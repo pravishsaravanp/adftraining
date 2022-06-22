@@ -19,6 +19,9 @@
 				},
 				{
 					"name": "FilterMovieDataAfter1950"
+				},
+				{
+					"name": "DerivePrimaryGenre"
 				}
 			],
 			"scriptLines": [
@@ -42,7 +45,11 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectedData",
-				"SelectedData filter(toInteger(year) > 1950) ~> FilterMovieDataAfter1950"
+				"SelectedData filter(toInteger(year) > 1950) ~> FilterMovieDataAfter1950",
+				"FilterMovieDataAfter1950 derive(PrimaryGenre = case(",
+				"    locate('|',genres,1) > 0,",
+				"    left(genres,locate('|',genres,1)-1),",
+				"    genres)) ~> DerivePrimaryGenre"
 			]
 		}
 	}
