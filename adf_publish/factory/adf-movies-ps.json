@@ -1,0 +1,9 @@
+{
+	"name": "adf-movies-ps",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "0a169933-ba67-4973-a51a-f26b4d0ba528",
+		"tenantId": "00073b17-7209-4a95-a5c2-6309c60c8bd6"
+	}
+}
