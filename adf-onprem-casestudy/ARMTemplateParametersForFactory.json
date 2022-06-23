@@ -10,6 +10,21 @@
 		},
 		"AzureSqlSalesDB_connectionString": {
 			"value": ""
+		},
+		"LSBlobStorage_connectionString": {
+			"value": ""
+		},
+		"LSAzureSQL_connectionString": {
+			"value": ""
+		},
+		"AzureSSISruntime_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"value": "rg-onprim.database.windows.net"
+		},
+		"AzureSSISruntime_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"value": "psadmin"
+		},
+		"AzureSSISruntime_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"value": ""
 		}
 	}
 }

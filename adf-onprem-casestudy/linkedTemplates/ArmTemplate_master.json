@@ -15,6 +15,25 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlSalesDB'"
 		},
+		"LSBlobStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LSBlobStorage'"
+		},
+		"LSAzureSQL_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LSAzureSQL'"
+		},
+		"AzureSSISruntime_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"type": "string",
+			"defaultValue": "rg-onprim.database.windows.net"
+		},
+		"AzureSSISruntime_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"type": "string",
+			"defaultValue": "psadmin"
+		},
+		"AzureSSISruntime_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"type": "secureString"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -45,8 +64,23 @@
 					"AzureSqlSalesDB_connectionString": {
 						"value": "[parameters('AzureSqlSalesDB_connectionString')]"
 					},
+					"LSBlobStorage_connectionString": {
+						"value": "[parameters('LSBlobStorage_connectionString')]"
+					},
+					"LSAzureSQL_connectionString": {
+						"value": "[parameters('LSAzureSQL_connectionString')]"
+					},
 					"LSSqlServerOnPrem_connectionString": {
 						"value": "[parameters('LSSqlServerOnPrem_connectionString')]"
+					},
+					"AzureSSISruntime_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+						"value": "[parameters('AzureSSISruntime_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint')]"
+					},
+					"AzureSSISruntime_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+						"value": "[parameters('AzureSSISruntime_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName')]"
+					},
+					"AzureSSISruntime_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+						"value": "[parameters('AzureSSISruntime_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword')]"
 					}
 				}
 			},
