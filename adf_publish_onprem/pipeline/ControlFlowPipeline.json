@@ -87,9 +87,17 @@
 							"typeProperties": {
 								"dataset": {
 									"referenceName": "DSEmployeeFilesForParameters",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"filename": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
 								},
-								"fieldList": [],
+								"fieldList": [
+									"size"
+								],
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"enablePartitionDiscovery": false
