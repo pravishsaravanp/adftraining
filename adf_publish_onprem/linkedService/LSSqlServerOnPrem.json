@@ -6,7 +6,7 @@
 		"type": "SqlServer",
 		"typeProperties": {
 			"connectionString": "integrated security=False;data source=sqlserver-vm;initial catalog=SalesDB;user id=psadmin",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3ZWE0OGFiMi05NmRmLTRhMWItYTI1My02OTZkMWI0ZGIzMzYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyYWJhNzA4My0xNDE0LTQxYjEtYjI4OC0zMGQzNGRiYmNiYjAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "onprem",
