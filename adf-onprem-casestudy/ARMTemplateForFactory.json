@@ -438,7 +438,12 @@
 										"dataset": {
 											"referenceName": "DSEmployeeFilesForParameters",
 											"type": "DatasetReference",
-											"parameters": {}
+											"parameters": {
+												"filename": {
+													"value": "@item().name",
+													"type": "Expression"
+												}
+											}
 										},
 										"fieldList": [
 											"size"
@@ -466,7 +471,7 @@
 									"userProperties": [],
 									"typeProperties": {
 										"expression": {
-											"value": "@greaterOrEquals(activity('GetFileSize').output.size,300)",
+											"value": "@greaterOrEquals(activity('GetFileSize').output.size,370)",
 											"type": "Expression"
 										},
 										"ifFalseActivities": [
@@ -486,7 +491,12 @@
 													"dataset": {
 														"referenceName": "DSEmployeeFilesForParameters",
 														"type": "DatasetReference",
-														"parameters": {}
+														"parameters": {
+															"filename": {
+																"value": "@item().name",
+																"type": "Expression"
+															}
+														}
 													},
 													"logStorageSettings": {
 														"linkedServiceName": {
@@ -627,12 +637,20 @@
 					"referenceName": "LSBlobStorage",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"filename": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "*.csv",
+						"fileName": {
+							"value": "@dataset().filename",
+							"type": "Expression"
+						},
 						"container": "filescontainer"
 					},
 					"columnDelimiter": ",",
