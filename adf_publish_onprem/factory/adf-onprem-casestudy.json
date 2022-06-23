@@ -1,0 +1,9 @@
+{
+	"name": "adf-onprem-casestudy",
+	"location": "centralus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "303a1209-2a06-43c5-85bb-f9d9fd220237",
+		"tenantId": "00073b17-7209-4a95-a5c2-6309c60c8bd6"
+	}
+}
