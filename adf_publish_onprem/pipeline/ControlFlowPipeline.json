@@ -89,18 +89,32 @@
 									"referenceName": "DSEmployeeFilesForParameters",
 									"type": "DatasetReference"
 								},
-								"fieldList": [
-									{
-										"value": "@item().name",
-										"type": "Expression"
-									}
-								],
+								"fieldList": [],
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
 									"type": "DelimitedTextReadSettings"
+								}
+							}
+						},
+						{
+							"name": "TakeActionBasedOnFileSize",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "GetFileSize",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@greaterOrEquals(activity('GetFileSize').output.size,300)",
+									"type": "Expression"
 								}
 							}
 						}
