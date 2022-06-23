@@ -1,0 +1,6 @@
+{
+	"name": "CopyEmpDataFromOnPremToAzureSQL",
+	"properties": {
+		"annotations": []
+	}
+}
