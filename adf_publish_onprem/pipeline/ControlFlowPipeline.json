@@ -115,7 +115,41 @@
 								"expression": {
 									"value": "@greaterOrEquals(activity('GetFileSize').output.size,300)",
 									"type": "Expression"
-								}
+								},
+								"ifFalseActivities": [
+									{
+										"name": "DeleteSmallFiles",
+										"type": "Delete",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"dataset": {
+												"referenceName": "DSEmployeeFilesForParameters",
+												"type": "DatasetReference"
+											},
+											"logStorageSettings": {
+												"linkedServiceName": {
+													"referenceName": "LSBlobStorage",
+													"type": "LinkedServiceReference"
+												},
+												"path": "filescontainer"
+											},
+											"enableLogging": true,
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											}
+										}
+									}
+								]
 							}
 						}
 					]
